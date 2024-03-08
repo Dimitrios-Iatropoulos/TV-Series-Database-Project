@@ -6,7 +6,7 @@ This project develops a comprehensive database for TV series, capturing details 
 
 ## Database Description
 
-Our database intricately models relationships between actors, TV series, episodes, and viewers. It includes:
+Our database models relationships between actors, TV series, episodes, and viewers. It includes:
 
 - Actors: Detailed records including name, surname, gender, and contact information.
 - Series & Episodes: Information on series and their episodes, including titles and production years.
@@ -17,7 +17,7 @@ Our database intricately models relationships between actors, TV series, episode
 
 - Implemented in SQL with Oracle Database.
 - Features comprehensive data integrity constraints to maintain accuracy and reliability.
-- Utilizes triggers to prevent data inconsistencies.
+- Initiates sequences for primary keys to ensure each record is uniquely identified, enhancing data management and integrity.
 - Demonstrates advanced SQL queries for data analysis, including aggregates and joins.
 - Adheres to best practices in database design, including normalization to optimize storage and query performance.
 
