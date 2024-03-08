@@ -12,6 +12,9 @@ Our database models relationships between actors, TV series, episodes, and viewe
 - Series & Episodes: Information on series and their episodes, including titles and production years.
 - Viewers: Viewer demographics and their viewing habits.
 - Viewership: Detailed viewership data, capturing which episodes are watched by which viewers.
+- Below is the Entity-Relationship Diagram (ERD) utilized for the design of our TV series database. It visually represents the database schema.
+
+  ![Alt text](https://github.com/jimiatro/TV-Series-Database-Project/blob/main/ERD.png)
 
 ## Technical Aspects
 
