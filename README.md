@@ -1,2 +1,39 @@
 # TV-Series-Database-Project
-This project develops a comprehensive database for TV series
+
+## Project Overview
+
+This project develops a comprehensive database for TV series, capturing details about actors, series, episodes, viewers, and their interactions. It showcases skills in SQL, database management, and data analysis within the entertainment industry context.
+
+## Database Description
+
+Our database intricately models relationships between actors, TV series, episodes, and viewers. It includes:
+
+Actors: Detailed records including name, surname, gender, and contact information.
+Series & Episodes: Information on series and their episodes, including titles and production years.
+Viewers: Viewer demographics and their viewing habits.
+Viewership: Detailed viewership data, capturing which episodes are watched by which viewers.
+
+## Technical Aspects
+
+Implemented in SQL with Oracle Database.
+Features comprehensive data integrity constraints to maintain accuracy and reliability.
+Utilizes triggers to prevent data inconsistencies.
+Demonstrates advanced SQL queries for data analysis, including aggregates and joins.
+Adheres to best practices in database design, including normalization to optimize storage and query performance.
+
+## Repository Contents
+
+create_.txt: SQL script for database schema creation.
+insert_.txt: Sample data insertion scripts.
+constraint_.txt: Constraints for data integrity.
+query_.txt: SQL queries showcasing database capabilities.
+drop_.txt: Cleanup script for database schema.
+Test_Plan_.docx: Detailed testing documentation and results.
+
+
+## License 
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Feedback 
+I would love to hear your thoughts on my project! If you have any suggestions or comments, please feel free to open an issue or send me an email at jimiatro@hotmail.com.
