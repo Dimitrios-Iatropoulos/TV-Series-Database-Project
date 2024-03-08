@@ -1,0 +1,87 @@
+CREATE SEQUENCE actor_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE series_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE viewer_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE episode_seq START WITH 1 INCREMENT BY 1;
+
+
+--ACTORS Table
+CREATE TABLE ACTOR (
+    actor_id NUMBER(9) DEFAULT actor_seq.NEXTVAL, 
+    a_name VARCHAR2(50) NOT NULL CHECK (UPPER(a_name) = a_name),
+    a_surname VARCHAR2(50) NOT NULL CHECK (UPPER(a_surname) = a_surname),
+    a_gender CHAR(1) CONSTRAINT chk_actor_gender CHECK (a_gender IN ('M', 'F', 'O')),
+    a_email VARCHAR2(100) CHECK (UPPER(a_email) = a_email) CONSTRAINT uq_actor_email UNIQUE,
+    a_city VARCHAR2(50) CHECK (UPPER(a_city) = a_city),
+    a_country VARCHAR2(50) CHECK (UPPER(a_country) = a_country),
+    a_dob DATE
+);
+
+
+-- SERIES Table
+CREATE TABLE SERIES (
+    series_id NUMBER(9) DEFAULT series_seq.NEXTVAL,
+    s_title VARCHAR2(100) NOT NULL CHECK (UPPER(s_title) = s_title), 
+    s_description VARCHAR2(255),
+    s_start_year NUMBER(4)
+);
+
+
+-- VIEWER Table
+CREATE TABLE VIEWER (
+    viewer_id NUMBER(9) DEFAULT viewer_seq.NEXTVAL,
+    v_name VARCHAR2(50) NOT NULL CHECK (UPPER(v_name) = v_name),
+    v_surname VARCHAR2(50) NOT NULL CHECK (UPPER(v_surname) = v_surname),
+    v_gender CHAR(1) CONSTRAINT chk_viewer_gender CHECK (v_gender IN ('M', 'F', 'O')),
+    v_email VARCHAR2(100) CHECK (UPPER(v_email) = v_email) CONSTRAINT uq_viewer_email UNIQUE,
+    v_city VARCHAR2(50) CHECK (UPPER(v_city) = v_city),
+    v_country VARCHAR2(50) CHECK (UPPER(v_country) = v_country),
+    v_address VARCHAR2(100),
+    v_dob DATE
+);
+
+
+-- EPISODE Table
+CREATE TABLE EPISODE (
+    episode_id NUMBER(9) DEFAULT episode_seq.NEXTVAL, 
+    e_title VARCHAR2(100) NOT NULL CHECK (UPPER(e_title) = e_title),
+    season_number NUMBER(2) NOT NULL ,
+    e_length NUMBER(10) NOT NULL , 
+    series_id NUMBER(9) NOT NULL   
+);
+
+
+-- CASTING Table
+CREATE TABLE CASTING (
+    actor_id NUMBER(9) ,
+    series_id NUMBER(9) ,
+    role VARCHAR2(100) NOT NULL CHECK (UPPER(role) = role) 
+);
+
+
+-- VIEWERSHIP Table
+CREATE TABLE VIEWERSHIP (
+    episode_id NUMBER(9) ,
+    viewer_id NUMBER(9) ,
+    watch_date DATE NOT NULL
+);
+
+
+
+
+
+-- Show all sequences
+SELECT sequence_name FROM user_sequences;
+
+
+
+-- Show all tables
+SELECT table_name FROM user_tables;
+
+
+-- Describe each table
+DESCRIBE ACTOR;
+DESCRIBE SERIES;
+DESCRIBE VIEWER;
+DESCRIBE EPISODE;
+DESCRIBE CASTING;
+DESCRIBE VIEWERSHIP;

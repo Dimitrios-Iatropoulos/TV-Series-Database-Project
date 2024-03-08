@@ -1,0 +1,25 @@
+--Dropping constraint as an example, even though it is not needed to drop the table as long as we respect the foreign keys.
+ALTER TABLE VIEWERSHIP
+DROP CONSTRAINT fk_viewership_episode_id;
+
+--Dropping tables in correct order
+DROP TABLE VIEWERSHIP;
+DROP TABLE CASTING;
+DROP TABLE EPISODE;
+DROP TABLE VIEWER;
+DROP TABLE SERIES;
+DROP TABLE ACTOR;
+
+--Dropping sequences
+DROP SEQUENCE actor_seq;
+DROP SEQUENCE series_seq;
+DROP SEQUENCE viewer_seq;
+DROP SEQUENCE episode_seq;
+
+
+
+-- Check if tables are dropped
+SELECT table_name FROM user_tables;
+
+-- Check if sequences are dropped
+SELECT sequence_name FROM user_sequences;

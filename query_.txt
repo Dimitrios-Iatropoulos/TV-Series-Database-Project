@@ -1,0 +1,96 @@
+A)	SELECT * FROM ACTOR
+B)	SELECT A_NAME,A_SURNAME,A_GENDER FROM ACTOR ORDER BY A_NAME DESC;
+C)	
+1)	SELECT * FROM ACTOR WHERE A_COUNTRY = 'USA';
+2)	SELECT * FROM ACTOR WHERE A_NAME LIKE 'J%E';
+3)	SELECT * FROM VIEWER WHERE V_CITY != 'THESSALONIKI';
+4)	SELECT A_DOB FROM ACTOR WHERE TO_CHAR(A_DOB,'MM') BETWEEN '04' AND '09';
+D)	
+1)	SELECT A.A_NAME,C.ROLE FROM ACTOR A, CASTING C WHERE A.ACTOR_ID = C.ACTOR_ID;
+2)	SELECT A.A_NAME,C.ROLE,S.S_TITLE FROM ACTOR A 
+JOIN CASTING C ON A.ACTOR_ID = C.ACTOR_ID 
+JOIN SERIES S ON C.SERIES_ID = S.SERIES_ID;
+3)	SELECT A.A_NAME,C.ROLE,S.S_TITLE,E_TITLE FROM ACTOR A 
+JOIN CASTING C ON A.ACTOR_ID = C.ACTOR_ID
+ JOIN SERIES S ON C.SERIES_ID = S.SERIES_ID 
+JOIN EPISODE E ON S.SERIES_ID = e.SERIES_ID;
+E)	
+	1. SELECT * FROM ACTOR WHERE a_surname LIKE 'C%E';
+	2. SELECT v_country, COUNT(*) AS total_viewers FROM VIEWER GROUP BY v_country;
+	3. SELECT E.episode_id, E.e_title, COUNT(*) AS view_count FROM EPISODE E 
+JOIN VIEWERSHIP V ON E.episode_id = V.episode_id 
+GROUP BY E.episode_id, E.e_title 
+ORDER BY view_count DESC FETCH FIRST 1 ROW ONLY;
+-- Assumes VIEWERSHIP links directly to SERIES, otherwise need to join with EPISODE first
+
+	4. SELECT S.series_id, S.s_title, COUNT(*) AS view_count FROM SERIES S 
+JOIN EPISODE E ON S.series_id = E.series_id 
+JOIN VIEWERSHIP V ON E.episode_id = V.episode_id 
+GROUP BY S.series_id, S.s_title 
+ORDER BY view_count DESC FETCH FIRST 1 ROW ONLY;
+
+	5. SELECT A.a_surname, A.a_name, A.actor_id, S.s_title FROM ACTOR A 
+JOIN CASTING C ON A.actor_id = C.actor_id 
+JOIN SERIES S ON C.series_id = S.series_id 
+ORDER BY A.a_surname ASC, A.a_name ASC;
+
+	6. SELECT A.actor_id, A.a_surname, A.a_name, 
+                   	COUNT(DISTINCT C.series_id) AS series_count FROM ACTOR A 
+		JOIN CASTING C ON A.actor_id = C.actor_id 
+		GROUP BY A.actor_id, A.a_surname, A.a_name 
+		ORDER BY series_count DESC FETCH FIRST 1 ROW ONLY;
+	7. SELECT A.actor_id, A.a_surname, A.a_name, 
+    		COUNT (e.episode_id) AS episode_count FROM ACTOR A 
+		JOIN CASTING C ON A.actor_id = C.actor_id
+    		JOIN SERIES S ON C.SERIES_ID = S.SERIES_ID
+    		JOIN EPISODE E ON S.series_id = E.series_id 
+		GROUP BY A.actor_id, A.a_surname, A.a_name 
+		ORDER BY episode_count DESC FETCH FIRST 1 ROW ONLY;
+	8. SELECT s.s_title, e.season_number as nummber_of_seasons from series s
+    		JOIN EPISODE E ON S.series_id = E.series_id 
+		ORDER BY e.season_number DESC FETCH FIRST 1 ROW ONLY;
+	9. SELECT s.s_title, count(*) as number_of_episodes from series s
+    		JOIN EPISODE E ON S.series_id = E.series_id
+    		group by s.s_title
+		ORDER BY number_of_episodes DESC FETCH FIRST 1 ROW ONLY;
+	10. SELECT count(*) from series where s_start_year between 2000 and 2009;
+	11. SELECT a_name from actor where to_char(A_DOB,'MM') = '07';
+	12. SELEACT count(*) from actor A
+		LEFT JOIN CASTING C ON A.actor_id = C.actor_id 
+		where A.actor_id not in
+    		(select actor_id from casting);
+13. SELECT v_name from viewer where v_gender = 'F' order by v_dob FETCH FIRST 1 ROWS ONLY;
+	14. SELECT V_NAME,V_SURNAME from viewer where v_ADDRESS like '%SAINT%';
+	15. SELECT S.S_TITLE FROM SERIES S
+		JOIN EPISODE E ON S.series_id = E.series_id 
+		GROUP BY S.S_TITLE ORDER BY AVG(E_LENGTH) DESC;
+	16. SELECT V_NAME FROM VIEWER V
+		JOIN VIEWERSHIP VS ON V.VIEWER_ID = VS.VIEWER_ID
+		GROUP BY V_NAME ORDER BY COUNT(*) DESC
+    		FETCH FIRST 1 ROW ONLY;
+	17. SELECT V_NAME FROM VIEWER V
+		JOIN VIEWERSHIP VS ON V.VIEWER_ID = VS.VIEWER_ID
+    		WHERE V_CITY = 'THESSALONIKI'
+		GROUP BY V_NAME ORDER BY COUNT(*) DESC
+    		FETCH FIRST 1 ROW ONLY;
+	18. SELECT * FROM 
+    		(SELECT S.S_TITLE,V.V_GENDER FROM SERIES S
+			JOIN EPISODE E ON S.series_id = E.series_id 
+			JOIN VIEWERSHIP VS ON E.episode_id = VS.episode_id 
+			JOIN VIEWER V ON V.VIEWER_ID = VS.VIEWER_ID
+   			WHERE V.V_GENDER = 'M'
+			GROUP BY S.S_TITLE,V.V_GENDER ORDER BY COUNT(*) DESC
+			FETCH FIRST 1 ROW ONLY)
+       UNION
+       SELECT * FROM 
+    		(SELECT S.S_TITLE,V.V_GENDER FROM SERIES S
+			JOIN EPISODE E ON S.series_id = E.series_id 
+			JOIN VIEWERSHIP VS ON E.episode_id = VS.episode_id 
+			JOIN VIEWER V ON V.VIEWER_ID = VS.VIEWER_ID
+    			WHERE V.V_GENDER = 'F'
+			GROUP BY S.S_TITLE,V.V_GENDER ORDER BY COUNT(*) DESC
+			FETCH FIRST 1 ROW ONLY);
+	19. SELECT SUBSTR(V_NAME, 1, 4) || SUBSTR(V_SURNAME, 1, 4) AS USERNAME FROM VIEWER;
+	20. SELECT S.S_START_YEAR,SUM(E.E_LENGTH) FROM SERIES S
+		JOIN EPISODE E ON S.series_id = E.series_id 
+		GROUP BY S.S_START_YEAR ORDER BY S.S_START_YEAR;
