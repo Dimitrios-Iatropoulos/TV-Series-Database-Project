@@ -26,12 +26,12 @@ Our database models relationships between actors, TV series, episodes, and viewe
 
 ## Repository Contents
 
-- **create_.txt**: SQL script for database schema creation.
-- **insert_.txt**: Sample data insertion scripts.
-- **constraint_.txt**: Constraints for data integrity.
-- **query_.txt**: SQL queries showcasing database capabilities.
-- **drop_.txt**: Cleanup script for database schema.
-- **Test_Plan_.docx**: Detailed testing documentation and results.
+- **[create](./create_.txt)**: SQL script for database schema creation.
+- **[insert](./insert_.txt)**: Sample data insertion scripts.
+- **[constraint](./constraint_.txt)**: Constraints for data integrity.
+- **[query](./query_.txt)**: SQL queries showcasing database capabilities.
+- **[drop](./drop_.txt)**: Cleanup script for database schema.
+
 
 
 ## License 
